@@ -17,7 +17,14 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@stencil/core": "~0.13.2"
+    "@stencil/core": "~0.13.0",
+    "@types/jest": "23.3.5",
+    "@types/puppeteer": "1.6.4",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "jest-junit": "^5",
+    "pixelmatch": "4.0.2",
+    "puppeteer": "1.8.0"
   },
   "repository": {
     "type": "git",
