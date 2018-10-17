@@ -17,7 +17,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@stencil/core": "~0.13.2"
+    "@stencil/sass": "^0.1.0",
+    "@stencil/core": "~0.14.0"
   },
   "repository": {
     "type": "git",

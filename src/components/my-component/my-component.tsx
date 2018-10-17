@@ -2,13 +2,16 @@ import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
-  styleUrl: 'my-component.css',
+  styleUrl: 'my-component.scss',
   shadow: true
 })
 export class MyComponent {
-  @Prop() first: string;
-  @Prop() middle: string;
-  @Prop() last: string;
+  @Prop()
+  first: string;
+  @Prop()
+  middle: string;
+  @Prop()
+  last: string;
 
   format(): string {
     return (
