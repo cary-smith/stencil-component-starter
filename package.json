@@ -12,13 +12,15 @@
   ],
   "scripts": {
     "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
+    "start": "stencil build --dev --watch --serve --es5",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
-  "dependencies": {},
+  "dependencies": {
+    "core-js": "^2.6.0"
+  },
   "devDependencies": {
-    "@stencil/core": "~0.15.2"
+    "@stencil/core": "0.16.0"
   },
   "license": "MIT"
 }

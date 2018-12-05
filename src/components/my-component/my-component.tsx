@@ -1,9 +1,10 @@
-import { Component, Prop } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, Prop } from "@stencil/core";
+import "core-js/es6/map";
+import { format } from "../../utils/utils";
 
 @Component({
-  tag: 'my-component',
-  styleUrl: 'my-component.css',
+  tag: "my-component",
+  styleUrl: "my-component.css",
   shadow: true
 })
 export class MyComponent {
