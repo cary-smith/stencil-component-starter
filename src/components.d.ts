@@ -12,58 +12,58 @@ import '@stencil/core';
 
 export namespace Components {
 
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
-  }
-  interface MyComponentAttributes extends StencilHTMLAttributes {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
-  }
+  interface TheChild {}
+  interface TheChildAttributes extends StencilHTMLAttributes {}
+
+  interface TheInner {}
+  interface TheInnerAttributes extends StencilHTMLAttributes {}
+
+  interface TheOuter {}
+  interface TheOuterAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'MyComponent': Components.MyComponent;
+    'TheChild': Components.TheChild;
+    'TheInner': Components.TheInner;
+    'TheOuter': Components.TheOuter;
   }
 
   interface StencilIntrinsicElements {
-    'my-component': Components.MyComponentAttributes;
+    'the-child': Components.TheChildAttributes;
+    'the-inner': Components.TheInnerAttributes;
+    'the-outer': Components.TheOuterAttributes;
   }
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLTheChildElement extends Components.TheChild, HTMLStencilElement {}
+  var HTMLTheChildElement: {
+    prototype: HTMLTheChildElement;
+    new (): HTMLTheChildElement;
+  };
+
+  interface HTMLTheInnerElement extends Components.TheInner, HTMLStencilElement {}
+  var HTMLTheInnerElement: {
+    prototype: HTMLTheInnerElement;
+    new (): HTMLTheInnerElement;
+  };
+
+  interface HTMLTheOuterElement extends Components.TheOuter, HTMLStencilElement {}
+  var HTMLTheOuterElement: {
+    prototype: HTMLTheOuterElement;
+    new (): HTMLTheOuterElement;
   };
 
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement
+    'the-child': HTMLTheChildElement
+    'the-inner': HTMLTheInnerElement
+    'the-outer': HTMLTheOuterElement
   }
 
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'the-child': HTMLTheChildElement;
+    'the-inner': HTMLTheInnerElement;
+    'the-outer': HTMLTheOuterElement;
   }
 
 

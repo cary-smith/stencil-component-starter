@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
-  <script src="/build/mycomponent.js"></script>
-
-</head>
-<body>
-
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script src="/build/mycomponent.js"></script>
+    <style>
+      body {
+        padding-top: 30px;
+        min-height: 100vh;
+      }
+      .middle {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .small-width {
+        width: 120px;
+      }
+    </style>
+  </head>
+  <body class="middle">
+    <h3>Raw Child</h3>
+    <the-child></the-child>
+    <hr />
+    <h3>Nested Child</h3>
+    <the-inner></the-inner>
+    <hr />
+    <h3>Reparenting</h3>
+    <div>
+      <span id="theClickTarget">Click Target</span>
+      <the-outer for="theClickTarget">
+        <the-inner></the-inner>
+      </the-outer>
+    </div>
+  </body>
 </html>

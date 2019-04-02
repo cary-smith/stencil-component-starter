@@ -1,0 +1,8 @@
+.toggle-panel {
+  display: none;
+}
+
+.toggle-panel[is-open] {
+  display: block;
+  transition: all 1s ease-in-out;
+}

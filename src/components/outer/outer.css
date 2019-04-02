@@ -1,0 +1,12 @@
+:host {
+  display: none;
+}
+
+:host([is-active]) {
+  padding: 20px;
+  border: 1px solid dodgerblue;
+  display: block;
+  position: absolute;
+  top: 500px;
+  left: 500px;
+}
