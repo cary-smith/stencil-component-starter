@@ -1,5 +1,9 @@
-import { Component, Prop } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, h } from '@stencil/core';
+
+const VALUES = [];
+for (let i = 0; i < 20; i++) {
+  VALUES.push(1);
+}
 
 @Component({
   tag: 'my-component',
@@ -7,26 +11,11 @@ import { format } from '../../utils/utils';
   shadow: true
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
-
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
-
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
+  private get content() {
+    return VALUES.map(() => <non-shadow />);
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    return <div class='content'>{this.content}</div>;
   }
 }

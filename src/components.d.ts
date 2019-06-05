@@ -5,51 +5,15 @@
  */
 
 
-import '@stencil/core';
-
-
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
-  }
-  interface MyComponentAttributes extends StencilHTMLAttributes {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
-  }
+  interface MyComponent {}
+  interface NonShadow {}
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    'MyComponent': Components.MyComponent;
-  }
-
-  interface StencilIntrinsicElements {
-    'my-component': Components.MyComponentAttributes;
-  }
 
 
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
@@ -58,21 +22,34 @@ declare global {
     new (): HTMLMyComponentElement;
   };
 
+  interface HTMLNonShadowElement extends Components.NonShadow, HTMLStencilElement {}
+  var HTMLNonShadowElement: {
+    prototype: HTMLNonShadowElement;
+    new (): HTMLNonShadowElement;
+  };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement
-  }
-
-  interface ElementTagNameMap {
     'my-component': HTMLMyComponentElement;
+    'non-shadow': HTMLNonShadowElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
+declare namespace LocalJSX {
+  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {}
+  interface NonShadow extends JSXBase.HTMLAttributes<HTMLNonShadowElement> {}
+
+  interface IntrinsicElements {
+    'my-component': MyComponent;
+    'non-shadow': NonShadow;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+

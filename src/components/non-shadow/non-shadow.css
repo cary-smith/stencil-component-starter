@@ -1,0 +1,8 @@
+non-shadow {
+  background-color: lightgreen;
+  color: var(--the-color-i-use, black);
+  display: block;
+  font-weight: bolder;
+  position: relative;
+  margin: 4px;
+}
