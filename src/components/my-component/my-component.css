@@ -1,1 +1,8 @@
-
+:host {
+  background-color: lightblue;
+  border: 1px solid var(--maybe-black, black);
+  display: block;
+  padding: 2em;
+  margin: 2em;
+  font-weight: bolder;
+}

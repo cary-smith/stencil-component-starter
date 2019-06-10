@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
 
-  <script type="module" src="/build/stencil-starter-project-name.esm.js"></script>
-  <script nomodule src="/build/stencil-starter-project-name.js"></script>
+    <script
+      type="module"
+      src="/build/stencil-starter-project-name.esm.js"
+    ></script>
+    <script nomodule src="/build/stencil-starter-project-name.js"></script>
+  </head>
+  <body>
+    <my-component
+      first="Stencil"
+      last="'Don't call me a framework' JS"
+    ></my-component>
 
-</head>
-<body>
+    <button>Move the element to the bottom.</button>
+    <script>
+      var component = document.body.querySelector('my-component');
+      var button = document.body.querySelector('button');
+      var onTop = true;
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-
-</body>
+      button.addEventListener('click', function() {
+        if (onTop) {
+          document.body.appendChild(component);
+        } else {
+          document.body.insertAdjacentElement('afterbegin', component);
+        }
+        onTop = !onTop;
+      });
+    </script>
+  </body>
 </html>
