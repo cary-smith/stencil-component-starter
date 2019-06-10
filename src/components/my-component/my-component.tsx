@@ -11,11 +11,7 @@ for (let i = 0; i < 20; i++) {
   shadow: true
 })
 export class MyComponent {
-  private get content() {
-    return VALUES.map(() => <non-shadow />);
-  }
-
   render() {
-    return <div class='content'>{this.content}</div>;
+    return <div class='content'>{VALUES.map(() => <non-shadow />)}</div>;
   }
 }
