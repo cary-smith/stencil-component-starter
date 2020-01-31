@@ -10,20 +10,8 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
-  }
+  interface MyComponent {}
+  interface MyNested {}
 }
 
 declare global {
@@ -34,29 +22,25 @@ declare global {
     prototype: HTMLMyComponentElement;
     new (): HTMLMyComponentElement;
   };
+
+  interface HTMLMyNestedElement extends Components.MyNested, HTMLStencilElement {}
+  var HTMLMyNestedElement: {
+    prototype: HTMLMyNestedElement;
+    new (): HTMLMyNestedElement;
+  };
   interface HTMLElementTagNameMap {
     'my-component': HTMLMyComponentElement;
+    'my-nested': HTMLMyNestedElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
-  }
+  interface MyComponent {}
+  interface MyNested {}
 
   interface IntrinsicElements {
     'my-component': MyComponent;
+    'my-nested': MyNested;
   }
 }
 
@@ -67,6 +51,7 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+      'my-nested': LocalJSX.MyNested & JSXBase.HTMLAttributes<HTMLMyNestedElement>;
     }
   }
 }

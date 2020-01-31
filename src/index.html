@@ -1,17 +1,128 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
 
-  <script type="module" src="/build/stencil-starter-project-name.esm.js"></script>
-  <script nomodule src="/build/stencil-starter-project-name.js"></script>
+    <script
+      type="module"
+      src="/build/stencil-starter-project-name.esm.js"
+    ></script>
+    <script nomodule src="/build/stencil-starter-project-name.js"></script>
+    <style>
+      div {
+        padding: 0.5em;
+      }
+      div.raw {
+        border: 1px solid green;
+        display: inline-block;
+        padding: 3px;
+        position: relative;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      Count: <input id="count" type="number" />&nbsp;&nbsp; Use:
+      <select id="selection">
+        <option value="-1">Clear</option>
+        <option value="0">Raw Div</option>
+        <option value="1">Native Simple</option>
+        <option value="2">Native Nested</option>
+        <option value="3">Stencil Simple</option>
+        <option value="4">Stencil Nested</option>
+      </select>
+      (values will change when the selection changes)
+    </div>
+    <hr />
+    <div id="content"></div>
 
-</head>
-<body>
+    <script>
+      const sheet = `
+        :host {
+          border: 1px solid;
+          display: inline-block;
+          padding: 3px;
+          position: relative;
+          vertical-align: top;
+        }`;
+      class Simple extends HTMLElement {
+        constructor() {
+          super();
+          this.attachShadow({ mode: "open" });
+          this.shadowRoot.innerHTML = this.template;
+        }
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+        connectedCallback() {
+          this.style.borderColor = "purple";
+        }
 
-</body>
+        get template() {
+          return `<style>${sheet}</style>
+            <span><slot>Nothing native?</slot></span>`;
+        }
+      }
+
+      class Nested extends HTMLElement {
+        constructor() {
+          super();
+          this.attachShadow({ mode: "open" });
+          this.shadowRoot.innerHTML = this.template;
+        }
+
+        connectedCallback() {
+          this.style.borderColor = "yellow";
+        }
+
+        get template() {
+          return `<style>${sheet}</style>
+              <span>What is...</span>
+              <ntv-simple>Native nested?</ntv-simple>`;
+        }
+      }
+      customElements.define("ntv-nested", Nested);
+      customElements.define("ntv-simple", Simple);
+
+      const selectionEl = document.querySelector("#selection");
+      const contentEl = document.querySelector("#content");
+      const countEl = document.querySelector("#count");
+
+      const rawDiv = document.createElement("div");
+      rawDiv.classList.add("raw");
+      rawDiv.innerHTML = "Raw Div";
+
+      const allTypes = [
+        rawDiv,
+        document.createElement("ntv-simple"),
+        document.createElement("ntv-nested"),
+        document.createElement("my-component"),
+        document.createElement("my-nested")
+      ];
+
+      let fragment, childType, count;
+      function applyChoice() {
+        const index = parseInt(selectionEl.value);
+        contentEl.innerHTML = "";
+        if (index < 0) {
+          return;
+        }
+
+        childType = allTypes[index];
+        fragment = new DocumentFragment();
+        count = countEl.value;
+        for (let i = 0; i < count; i++) {
+          fragment.appendChild(childType.cloneNode(true));
+        }
+        contentEl.appendChild(fragment);
+      }
+
+      selectionEl.addEventListener("change", applyChoice);
+      countEl.addEventListener("change", applyChoice);
+    </script>
+  </body>
 </html>
