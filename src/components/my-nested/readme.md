@@ -9,13 +9,13 @@
 
 ### Depends on
 
-- [my-component](../my-component)
+- [stc-simple](../my-component)
 
 ### Graph
 ```mermaid
 graph TD;
-  my-nested --> my-component
-  style my-nested fill:#f9f,stroke:#333,stroke-width:4px
+  stc-nested --> stc-simple
+  style stc-nested fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -9,13 +9,13 @@
 
 ### Used by
 
- - [my-nested](../my-nested)
+ - [stc-nested](../my-nested)
 
 ### Graph
 ```mermaid
 graph TD;
-  my-nested --> my-component
-  style my-component fill:#f9f,stroke:#333,stroke-width:4px
+  stc-nested --> stc-simple
+  style stc-simple fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

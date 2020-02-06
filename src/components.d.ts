@@ -10,37 +10,37 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComponent {}
-  interface MyNested {}
+  interface StcNested {}
+  interface StcSimple {}
 }
 
 declare global {
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLStcNestedElement extends Components.StcNested, HTMLStencilElement {}
+  var HTMLStcNestedElement: {
+    prototype: HTMLStcNestedElement;
+    new (): HTMLStcNestedElement;
   };
 
-  interface HTMLMyNestedElement extends Components.MyNested, HTMLStencilElement {}
-  var HTMLMyNestedElement: {
-    prototype: HTMLMyNestedElement;
-    new (): HTMLMyNestedElement;
+  interface HTMLStcSimpleElement extends Components.StcSimple, HTMLStencilElement {}
+  var HTMLStcSimpleElement: {
+    prototype: HTMLStcSimpleElement;
+    new (): HTMLStcSimpleElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
-    'my-nested': HTMLMyNestedElement;
+    'stc-nested': HTMLStcNestedElement;
+    'stc-simple': HTMLStcSimpleElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent {}
-  interface MyNested {}
+  interface StcNested {}
+  interface StcSimple {}
 
   interface IntrinsicElements {
-    'my-component': MyComponent;
-    'my-nested': MyNested;
+    'stc-nested': StcNested;
+    'stc-simple': StcSimple;
   }
 }
 
@@ -50,8 +50,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
-      'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
-      'my-nested': LocalJSX.MyNested & JSXBase.HTMLAttributes<HTMLMyNestedElement>;
+      'stc-nested': LocalJSX.StcNested & JSXBase.HTMLAttributes<HTMLStcNestedElement>;
+      'stc-simple': LocalJSX.StcSimple & JSXBase.HTMLAttributes<HTMLStcSimpleElement>;
     }
   }
 }

@@ -12,13 +12,16 @@
       type="module"
       src="/build/stencil-starter-project-name.esm.js"
     ></script>
+    <script type="module">
+      import { html, render } from "https://unpkg.com/lit-html?module";
+    </script>
     <script nomodule src="/build/stencil-starter-project-name.js"></script>
     <style>
       div {
         padding: 0.5em;
       }
       div.raw {
-        border: 1px solid green;
+        border: 1px solid yellow;
         display: inline-block;
         padding: 3px;
         position: relative;
@@ -28,14 +31,16 @@
   </head>
   <body>
     <div>
-      Count: <input id="count" type="number" />&nbsp;&nbsp; Use:
+      Count: <input id="count" type="number" value="1000" />&nbsp;&nbsp; Use:
       <select id="selection">
         <option value="-1">Clear</option>
         <option value="0">Raw Div</option>
         <option value="1">Native Simple</option>
         <option value="2">Stencil Simple</option>
-        <option value="3">Native Nested</option>
-        <option value="4">Stencil Nested</option>
+        <option value="3">Lit Simple</option>
+        <option value="4">Native Nested</option>
+        <option value="5">Stencil Nested</option>
+        <option value="6">Lit Nested</option>
       </select>
       (values will change when the selection changes)
     </div>
@@ -43,51 +48,6 @@
     <div id="content"></div>
 
     <script>
-      const sheet = `
-        :host {
-          border: 1px solid;
-          display: inline-block;
-          padding: 3px;
-          position: relative;
-          vertical-align: top;
-        }`;
-      class Simple extends HTMLElement {
-        constructor() {
-          super();
-          this.attachShadow({ mode: "open" });
-          this.shadowRoot.innerHTML = this.template;
-        }
-
-        connectedCallback() {
-          this.style.borderColor = "purple";
-        }
-
-        get template() {
-          return `<style>${sheet}</style>
-            <span><slot>Nothing native?</slot></span>`;
-        }
-      }
-
-      class Nested extends HTMLElement {
-        constructor() {
-          super();
-          this.attachShadow({ mode: "open" });
-          this.shadowRoot.innerHTML = this.template;
-        }
-
-        connectedCallback() {
-          this.style.borderColor = "yellow";
-        }
-
-        get template() {
-          return `<style>${sheet}</style>
-              <span>What is...</span>
-              <ntv-simple>Native nested?</ntv-simple>`;
-        }
-      }
-      customElements.define("ntv-nested", Nested);
-      customElements.define("ntv-simple", Simple);
-
       const selectionEl = document.querySelector("#selection");
       const contentEl = document.querySelector("#content");
       const countEl = document.querySelector("#count");
@@ -98,10 +58,12 @@
 
       const allTypes = [
         rawDiv,
-        document.createElement("ntv-simple"),
-        document.createElement("my-component"),
-        document.createElement("ntv-nested"),
-        document.createElement("my-nested")
+        document.createElement("raw-simple"),
+        document.createElement("stc-simple"),
+        document.createElement("lit-simple"),
+        document.createElement("raw-nested"),
+        document.createElement("stc-nested"),
+        document.createElement("lit-nested")
       ];
 
       let fragment, childType, count;
