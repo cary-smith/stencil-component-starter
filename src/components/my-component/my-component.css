@@ -1,1 +1,13 @@
+:host {
+  border: 1px solid red;
+  border-radius: 1em;
+  display: block;
+  height: 200px;
+  padding: 1em;
+  width: 200px;
+  user-select: none;
+}
 
+:host([is-blue]) {
+  background-color: lightgreen;
+}

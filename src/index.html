@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
 
-  <script type="module" src="/build/stencil-starter-project-name.esm.js"></script>
-  <script nomodule src="/build/stencil-starter-project-name.js"></script>
+    <script
+      type="module"
+      src="/build/stencil-starter-project-name.esm.js"
+    ></script>
+    <script nomodule src="/build/stencil-starter-project-name.js"></script>
 
-</head>
-<body>
+    <style>
+      .flexy {
+        display: flex;
+      }
+      .other {
+        border: 1px solid blue;
+        border-radius: 1em;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flexy">
+      <my-component id="moveable"></my-component>
+      <div class="other">Some other content</div>
+    </div>
+    <button>Move it!!</button>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-
-</body>
+    <script>
+      var box = document.querySelector(".flexy");
+      var moveable = document.querySelector("#moveable");
+      var button = document.querySelector("button");
+      button.addEventListener("click", () => box.appendChild(moveable));
+    </script>
+  </body>
 </html>

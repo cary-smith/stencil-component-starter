@@ -1,32 +1,27 @@
-import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, Element, h, Listen } from "@stencil/core";
 
 @Component({
-  tag: 'my-component',
-  styleUrl: 'my-component.css',
+  tag: "my-component",
+  styleUrl: "my-component.css",
   shadow: true
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
+  @Element()
+  host: HTMLElement;
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
+  @Listen("click")
+  protected whenClicked() {
+    const { host } = this;
+    host.toggleAttribute("is-blue", !host.hasAttribute("is-blue"));
+  }
 
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
+  componentWillLoad() {
+    this.host.addEventListener("click", () =>
+      console.log("Native handler stays attached.")
+    );
   }
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    return <div>Click to watch color changes</div>;
   }
 }
